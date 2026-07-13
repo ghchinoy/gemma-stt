@@ -1,0 +1,124 @@
+# gemma-stt
+
+A standalone speech-to-text (transcription) CLI powered by **Gemma 4's native
+audio encoder**, running fully locally on Apple Silicon via
+[`mlx-vlm`](https://github.com/Blaizzy/mlx-vlm). No cloud calls, no separate
+ASR model (Whisper, etc.) -- Gemma 4's E2B/E4B checkpoints ship a built-in
+Conformer-style audio tower that was trained for ASR and speech-to-translated
+-text, and this tool just prompts it to transcribe.
+
+This project is a companion to two sibling directories:
+
+- `~/projects/gemma` -- the local Gemma 4 model zoo (GGUF, HF safetensors,
+  and MLX checkpoints for E2B/E4B/12B).
+- `~/projects/gemmma` -- an MLX-based LoRA fine-tuning pipeline for Gemma 4
+  (the `mlxtune` CLI), which is where the original proof-of-concept audio
+  script (`scripts/ask_audio.py`) came from.
+
+`gemma-stt` extracts that proof of concept into a dedicated, reusable CLI.
+
+## Contents
+
+- [Status](#status)
+- [Requirements](#requirements)
+- [Install](#install)
+- [Usage](#usage)
+- [How it works](#how-it-works)
+- [Known limitations](#known-limitations)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Status
+
+Working prototype, validated against both **E2B** and **E4B** MLX
+checkpoints. See [`docs/FINDINGS.md`](docs/FINDINGS.md) for accuracy/latency
+notes, known issues, and format gotchas (short version: GGUF files do **not**
+work for audio -- you need the MLX or HF safetensors checkpoints).
+
+## Requirements
+
+- macOS + Apple Silicon (mlx-vlm is Metal-based)
+- Python >= 3.10
+- Local Gemma 4 MLX checkpoints with audio support. By default this tool
+  looks for `~/projects/gemma/mlx-gemma-4-e2b` and `~/projects/gemma/mlx-gemma-4-e4b`
+  -- see the [User Guide](docs/USER_GUIDE.md#configuration-environment-variables)
+  if yours live elsewhere.
+
+## Install
+
+```bash
+git clone <this-repo> gemma-stt   # or use your existing local checkout
+cd gemma-stt
+uv venv
+uv pip install -e .
+```
+
+This pins `mlx==0.31.1` and `mlx-vlm==0.4.4` deliberately -- newer mlx-vlm
+releases changed a weight layout in Gemma 4's audio tower and fail to load
+these checkpoints. See the [User Guide's Troubleshooting section](docs/USER_GUIDE.md#troubleshooting)
+if you hit a shape-mismatch error.
+
+## Usage
+
+```bash
+# Transcribe a single file with the smaller/faster E2B model (default)
+gemma-stt transcribe path/to/audio.wav
+
+# Use the larger E4B model for better accuracy
+gemma-stt transcribe path/to/audio.wav --model e4b
+
+# Transcribe every audio file in a directory, JSON output
+gemma-stt transcribe path/to/audio_dir/ --model e4b --output json
+```
+
+Supported input formats: `.wav`, `.flac`, `.mp3`, `.m4a`, `.ogg`. Audio does
+**not** need to be pre-resampled -- mlx-vlm resamples to the model's
+expected 16kHz mono internally.
+
+For the full CLI reference (all flags, environment variables, output JSON
+schema, exit codes, E2B-vs-E4B guidance) and a troubleshooting guide, see
+**[docs/USER_GUIDE.md](docs/USER_GUIDE.md)**.
+
+## How it works
+
+Gemma 4's chat format supports interleaved content blocks. For audio input,
+the prompt looks like:
+
+```json
+{"role": "user", "content": [
+  {"type": "text", "text": "Transcribe the following audio verbatim..."},
+  {"type": "audio"}
+]}
+```
+
+`gemma_stt/transcribe.py` builds this message, applies the model's chat
+template via its `AutoProcessor`, and calls `mlx_vlm.generate(...,
+audio=[path])`. The model itself decides how to align its Conformer audio
+tower output with the text decoder -- there's no separate alignment/ASR
+pipeline involved.
+
+## Known limitations
+
+See [`docs/FINDINGS.md`](docs/FINDINGS.md) for the full list, and
+[`docs/USER_GUIDE.md`](docs/USER_GUIDE.md#troubleshooting) for how to work
+around the ones that come up in practice. Headlines:
+
+- No word-level timestamps (the model outputs text only; `.srt` generation
+  would require estimating timing from `audio_ms_per_token`, which is
+  unverified).
+- GGUF checkpoints in `~/projects/gemma` are text-decoder only; audio
+  requires MLX or HF safetensors format.
+- Long audio files may need chunking -- not yet implemented/tested here.
+
+## Contributing
+
+This is a personal/internal tool, built for experimenting with Gemma 4's
+local audio capabilities alongside `~/projects/gemma` and `~/projects/gemmma`.
+It's not currently soliciting outside contributions, but issues/PRs with
+concrete fixes (especially around the open questions in
+[`docs/FINDINGS.md`](docs/FINDINGS.md#things-not-tested--open-questions))
+are welcome if you're using it too.
+
+## License
+
+[Apache License 2.0](LICENSE)
