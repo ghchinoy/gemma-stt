@@ -8,6 +8,7 @@ For a quick pitch and 60-second quickstart, see the top-level
 ## Contents
 
 - [Installation](#installation)
+- [Test fixtures](#test-fixtures)
 - [CLI reference](#cli-reference)
   - [`gemma-stt transcribe`](#gemma-stt-transcribe)
   - [`gemma-stt models`](#gemma-stt-models)
@@ -37,6 +38,33 @@ uv pip install -e .
 This installs the pinned dependency set from `pyproject.toml`, notably
 `mlx==0.31.1` and `mlx-vlm==0.4.4` — see
 [Troubleshooting](#troubleshooting) for why those exact versions matter.
+
+## Test fixtures
+
+`tests/fixtures/**/*.wav` are gitignored -- only the JSON manifests (ground
+truth, source citations, and download URLs) are committed, to keep the repo
+free of vendored third-party audio. `scripts/fetch_fixtures.py` regenerates
+the actual audio deterministically (verified byte-for-byte reproducible)
+from the manifests:
+
+```bash
+make fixtures              # everything
+make fixtures-domains      # legal/medical/financial only -- needs `ffmpeg` + `curl`, no Python deps
+make fixtures-minds14      # E2B-vs-E4B comparison clips -- installs the 'fixtures' extra (HF `datasets`)
+```
+
+Or call the script directly for more control:
+
+```bash
+.venv/bin/python scripts/fetch_fixtures.py domains --force   # re-fetch even if files exist
+.venv/bin/python scripts/fetch_fixtures.py all
+```
+
+`fetch_fixtures.py minds14` also cross-checks each downloaded sample's
+transcription against the ground truth already committed in
+`tests/fixtures/manifest.json` and warns if they've drifted (e.g. if the
+upstream HF dataset changes). `make smoke` runs a quick end-to-end sanity
+check using one of these fixtures once fetched.
 
 Verify the install and that your models resolve:
 

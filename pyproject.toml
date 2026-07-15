@@ -14,6 +14,11 @@ dependencies = [
     "numpy",
 ]
 
+[project.optional-dependencies]
+# Only needed to (re)generate the MInDS-14 test fixtures via
+# scripts/fetch_fixtures.py minds14 -- not required to run the CLI itself.
+fixtures = ["datasets>=2.14"]
+
 [project.scripts]
 gemma-stt = "gemma_stt.cli:main"
 

@@ -3,3 +3,11 @@ __pycache__/
 *.pyc
 *.egg-info/
 .DS_Store
+uv.lock
+
+# Test fixture audio is fetched on demand (see scripts/fetch_fixtures.py
+# and `make fixtures`), not committed -- keeps the repo lean and avoids
+# vendoring third-party recordings into git history. Manifests (ground
+# truth + source citations) and showcase results ARE tracked.
+tests/fixtures/*.wav
+tests/fixtures/domains/*/*.wav

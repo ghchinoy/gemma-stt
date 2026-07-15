@@ -6,6 +6,7 @@
     "clips": [
       {
         "file": "legal/legal_adickes.wav",
+        "audio_url": "https://s3.amazonaws.com/oyez.case-media.mp3/case_data/2023/22-611/22-611_20231031-argument.delivery.mp3",
         "start": 3181.5,
         "end": 3210.0,
         "speaker": "Masha G. Hansford (Assistant to the Solicitor General)",
@@ -14,6 +15,7 @@
       },
       {
         "file": "legal/legal_taylorswift.wav",
+        "audio_url": "https://s3.amazonaws.com/oyez.case-media.mp3/case_data/2023/22-611/22-611_20231031-argument.delivery.mp3",
         "start": 4245.5,
         "end": 4266.0,
         "speaker": "Justice Ketanji Brown Jackson",
@@ -22,6 +24,7 @@
       },
       {
         "file": "legal/legal_intro.wav",
+        "audio_url": "https://s3.amazonaws.com/oyez.case-media.mp3/case_data/2023/22-611/22-611_20231031-argument.delivery.mp3",
         "start": 0,
         "end": 8.0,
         "speaker": "Chief Justice John G. Roberts, Jr.",
@@ -37,6 +40,7 @@
     "clips": [
       {
         "file": "medical/medical_gastroenteritis.wav",
+        "audio_url": "https://media.githubusercontent.com/media/babylonhealth/primock57/main/audio/day1_consultation01_doctor.wav",
         "start": 347.5,
         "end": 359.5,
         "speaker": "Doctor (consultation 01)",
@@ -45,6 +49,7 @@
       },
       {
         "file": "medical/medical_antibiotics.wav",
+        "audio_url": "https://media.githubusercontent.com/media/babylonhealth/primock57/main/audio/day1_consultation05_doctor.wav",
         "start": 495.5,
         "end": 504.0,
         "speaker": "Doctor (consultation 05)",
@@ -53,6 +58,7 @@
       },
       {
         "file": "medical/medical_trimethoprim.wav",
+        "audio_url": "https://media.githubusercontent.com/media/babylonhealth/primock57/main/audio/day1_consultation05_doctor.wav",
         "start": 557.5,
         "end": 569.5,
         "speaker": "Doctor (consultation 05)",
@@ -69,6 +75,7 @@
     "clips": [
       {
         "file": "financial/financial_600million.wav",
+        "audio_url": "https://s3.amazonaws.com/oyez.case-media.mp3/case_data/2023/22-448/22-448_20231003-argument.delivery.mp3",
         "start": 2912.0,
         "end": 2937.0,
         "speaker": "Justice Elena Kagan",
@@ -77,6 +84,7 @@
       },
       {
         "file": "financial/financial_appropriations.wav",
+        "audio_url": "https://s3.amazonaws.com/oyez.case-media.mp3/case_data/2023/22-448/22-448_20231003-argument.delivery.mp3",
         "start": 1657.5,
         "end": 1682.0,
         "speaker": "Justice Samuel A. Alito, Jr.",

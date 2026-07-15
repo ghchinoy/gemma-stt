@@ -1,42 +1,56 @@
-[
-  {
-    "file": "sample_0.wav",
-    "orig_sr": 8000,
-    "duration_sec": 10.84,
-    "ground_truth": "I would like to set up a joint account with my partner",
-    "english_transcription": "I would like to set up a joint account with my partner",
-    "intent_class": "joint_account"
+{
+  "source": {
+    "hf_dataset": "PolyAI/minds14",
+    "hf_config": "en-US",
+    "hf_split": "train",
+    "license": "See dataset card -- CC0/permissive banking-intent ASR dataset commonly used for research",
+    "note": "Audio is not embedded here; fetch with `make fixtures-minds14` (uses the Hugging Face `datasets` library, requires the `fixtures` extra: `uv pip install -e '.[fixtures]'`)."
   },
-  {
-    "file": "sample_5.wav",
-    "orig_sr": 8000,
-    "duration_sec": 4.55,
-    "ground_truth": "how to set up a joint account",
-    "english_transcription": "how to set up a joint account",
-    "intent_class": "joint_account"
-  },
-  {
-    "file": "sample_12.wav",
-    "orig_sr": 8000,
-    "duration_sec": 10.92,
-    "ground_truth": "hi I was trying to set up a joint account is there a somewhere on the app that I can do that or do I have to do that through you",
-    "english_transcription": "hi I was trying to set up a joint account is there a somewhere on the app that I can do that or do I have to do that through you",
-    "intent_class": "joint_account"
-  },
-  {
-    "file": "sample_20.wav",
-    "orig_sr": 8000,
-    "duration_sec": 8.28,
-    "ground_truth": "I would like to set up a joint account can I do that in the app",
-    "english_transcription": "I would like to set up a joint account can I do that in the app",
-    "intent_class": "joint_account"
-  },
-  {
-    "file": "sample_33.wav",
-    "orig_sr": 8000,
-    "duration_sec": 16.98,
-    "ground_truth": "hello yes my son is going off to college and I'd like to set up a joint account so that emergency",
-    "english_transcription": "hello yes my son is going off to college and I'd like to set up a joint account so that emergency",
-    "intent_class": "joint_account"
-  }
-]
+  "samples": [
+    {
+      "file": "sample_0.wav",
+      "hf_index": 0,
+      "orig_sr": 8000,
+      "duration_sec": 10.84,
+      "ground_truth": "I would like to set up a joint account with my partner",
+      "english_transcription": "I would like to set up a joint account with my partner",
+      "intent_class": "joint_account"
+    },
+    {
+      "file": "sample_5.wav",
+      "hf_index": 5,
+      "orig_sr": 8000,
+      "duration_sec": 4.55,
+      "ground_truth": "how to set up a joint account",
+      "english_transcription": "how to set up a joint account",
+      "intent_class": "joint_account"
+    },
+    {
+      "file": "sample_12.wav",
+      "hf_index": 12,
+      "orig_sr": 8000,
+      "duration_sec": 10.92,
+      "ground_truth": "hi I was trying to set up a joint account is there a somewhere on the app that I can do that or do I have to do that through you",
+      "english_transcription": "hi I was trying to set up a joint account is there a somewhere on the app that I can do that or do I have to do that through you",
+      "intent_class": "joint_account"
+    },
+    {
+      "file": "sample_20.wav",
+      "hf_index": 20,
+      "orig_sr": 8000,
+      "duration_sec": 8.28,
+      "ground_truth": "I would like to set up a joint account can I do that in the app",
+      "english_transcription": "I would like to set up a joint account can I do that in the app",
+      "intent_class": "joint_account"
+    },
+    {
+      "file": "sample_33.wav",
+      "hf_index": 33,
+      "orig_sr": 8000,
+      "duration_sec": 16.98,
+      "ground_truth": "hello yes my son is going off to college and I'd like to set up a joint account so that emergency",
+      "english_transcription": "hello yes my son is going off to college and I'd like to set up a joint account so that emergency",
+      "intent_class": "joint_account"
+    }
+  ]
+}

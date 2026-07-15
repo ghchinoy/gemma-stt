@@ -79,6 +79,7 @@ git clone <this-repo> gemma-stt   # or use your existing local checkout
 cd gemma-stt
 uv venv
 uv pip install -e .
+# or: make install
 ```
 
 This pins `mlx==0.31.1` and `mlx-vlm==0.4.4` deliberately -- newer mlx-vlm
@@ -106,6 +107,20 @@ expected 16kHz mono internally.
 For the full CLI reference (all flags, environment variables, output JSON
 schema, exit codes, E2B-vs-E4B guidance) and a troubleshooting guide, see
 **[docs/USER_GUIDE.md](docs/USER_GUIDE.md)**.
+
+### Test fixtures
+
+`tests/fixtures/**/*.wav` are **not committed** -- only the JSON manifests
+(ground truth + source citations) are, to keep the repo lean. Fetch the
+actual audio with:
+
+```bash
+make fixtures            # everything (domains + minds14)
+make fixtures-domains    # legal/medical/financial clips only (curl + ffmpeg, no extra deps)
+make fixtures-minds14    # E2B-vs-E4B comparison clips (installs the 'fixtures' extra: HF `datasets`)
+```
+
+See `scripts/fetch_fixtures.py` and `make help` for details.
 
 ## How it works
 

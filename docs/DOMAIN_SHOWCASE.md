@@ -11,8 +11,10 @@ made things measurably worse.** Details below.
 
 ## Test data
 
-All clips are in `tests/fixtures/domains/`, with full ground truth and
-source citations in `tests/fixtures/domains/manifest.json`.
+All clips are described in `tests/fixtures/domains/manifest.json` (full
+ground truth, source citations, and download URLs) -- the audio itself
+isn't committed to git; fetch it first with `make fixtures-domains` (see
+[`../README.md`](../README.md#test-fixtures)).
 
 | Domain | Source | License | Notes |
 |---|---|---|---|
@@ -41,8 +43,10 @@ figures (*$600 million*).
 Run against both E2B and E4B. Reproduce with:
 
 ```bash
+make fixtures-domains   # fetch the audio (one-time)
 .venv/bin/python tests/run_domain_showcase.py --model e4b
 .venv/bin/python tests/run_domain_showcase.py --model e2b
+# or: make showcase (runs fixtures-domains + the e4b comparison)
 ```
 
 Full raw output: `tests/fixtures/domains/showcase_results_e4b.json` and
