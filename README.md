@@ -29,6 +29,7 @@ else in `~/projects/gemma`.
 - [Install](#install)
 - [Usage](#usage)
 - [How it works](#how-it-works)
+- [Domain-specific prompting](#domain-specific-prompting)
 - [Known limitations](#known-limitations)
 - [Contributing](#contributing)
 - [License](#license)
@@ -123,6 +124,25 @@ template via its `AutoProcessor`, and calls `mlx_vlm.generate(...,
 audio=[path])`. The model itself decides how to align its Conformer audio
 tower output with the text decoder -- there's no separate alignment/ASR
 pipeline involved.
+
+## Domain-specific prompting
+
+Because Gemma 4 is a general multimodal LLM rather than a fixed ASR head,
+`--prompt` can be used to add domain context (e.g. "this is a medical
+consultation, use correct clinical terminology"). `tests/fixtures/domains/`
+has a real, sourced, cited test suite of legal, medical, and financial audio
+clips (Supreme Court oral arguments and mock clinical consultations, with
+official/professional ground-truth transcripts) used to test this claim
+empirically rather than assume it.
+
+**Result: it's a real but narrow effect, not a universal accuracy boost.**
+Domain prompting fixed some jargon-homophone errors ("antibodies" ->
+"antibiotics") and formatting conventions (adding `$` to dollar figures),
+but did not fix rare proper nouns (case names), and on the smaller E2B
+model, it once caused a *new* hallucination (fabricating "erectile
+dysfunction" that wasn't in the audio at all). Full methodology, results
+tables, and sourcing/licensing details for every clip:
+**[docs/DOMAIN_SHOWCASE.md](docs/DOMAIN_SHOWCASE.md)**.
 
 ## Known limitations
 

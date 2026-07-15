@@ -1,0 +1,74 @@
+[
+  {
+    "domain": "legal",
+    "file": "legal/legal_adickes.wav",
+    "ground_truth": "I agree with that but in the narrow sense, the Adickes sense of custom that has the force of law, that's how this Court has defined it in the 1983 context. So, when there is such a strong norm in a town that if you allow your diner to serve racially diverse groups like the facts in Adickes on segregated groups, the sheriff will come and will -- will beat you up and there will be negative repercussions that -- I think that is the form of custom. I don't want to be too rigid --",
+    "generic_prompt": "Transcribe the following audio verbatim. Output only the spoken words as plain text, with no commentary, no speaker labels, and no additional formatting.",
+    "generic_output": "you you agree with that. I agree with that, but in the narrow sense, the Atticus sense of custom that has the force of law, that's how this court has defined it in the 1983 context. So when there's such a strong norm in a town that if you allow your diner to um serve racially diverse groups, like the facts in Atticus, unsegregated groups, the sheriff will come and will will beat you up and there will be negative repercussions. That I think that is the form of custom. I don't want to be too radical in communicating",
+    "domain_prompt": "Transcribe the following audio verbatim. This is a recording of a U.S. Supreme Court oral argument. Use correct legal terminology, case names, and citations.",
+    "domain_output": "you you agree with that. I agree with that, but in the narrow sense, the Attic's sense of custom that has the force of law, that's how this court has defined it in the 1983 context. So when there's such a strong norm in a town that if you allow your diner to um serve racially diverse groups, like the facts in Attic's unsegregated groups, the sheriff will come and will will beat you up and there will be negative repercussions. That I think that is the form of custom. I don't want to be too radical in communicating"
+  },
+  {
+    "domain": "legal",
+    "file": "legal/legal_taylorswift.wav",
+    "ground_truth": "-- but -- but Taylor Swift could have hired -- it's -- it's not just the fact that -- I mean, they're not doing anything more than a private security guard could have done, right? So it's not -- it's not just we look at, well, what are they doing versus what a private person could do. So what makes it that they are state action and not --",
+    "generic_prompt": "Transcribe the following audio verbatim. Output only the spoken words as plain text, with no commentary, no speaker labels, and no additional formatting.",
+    "generic_output": "Taylor Swift could have hired a it's not just the fact that I mean they're not doing anything more than a private security card could have done, right? So it's not it's not just we look at well what are they doing versus what a private person could do. So what makes it that they are state action and and not I I think that",
+    "domain_prompt": "Transcribe the following audio verbatim. This is a recording of a U.S. Supreme Court oral argument. Use correct legal terminology, case names, and citations.",
+    "domain_output": "Taylor Swift could have hired a it's not just the fact that I mean they're not doing anything more than a private security card could have done, right? So it's not it's not just we look at well what are they doing versus what a private person could do. So what makes it that they are state action and and not I I think that"
+  },
+  {
+    "domain": "legal",
+    "file": "legal/legal_intro.wav",
+    "ground_truth": "We'll hear argument next in Case 22-611, Lindke versus Freed. Mr. Kedem.",
+    "generic_prompt": "Transcribe the following audio verbatim. Output only the spoken words as plain text, with no commentary, no speaker labels, and no additional formatting.",
+    "generic_output": "We'll hear argument next in case 22611 uh Linky versus Fried. Secundum.",
+    "domain_prompt": "Transcribe the following audio verbatim. This is a recording of a U.S. Supreme Court oral argument. Use correct legal terminology, case names, and citations.",
+    "domain_output": "We'll hear argument next in case 22611, uh Linky versus Fried. Squidem."
+  },
+  {
+    "domain": "medical",
+    "file": "medical/medical_gastroenteritis.wav",
+    "ground_truth": "Um, it seems like you may have something, uh, called gastroenteritis, which essentially just a tummy bug or infection of your uh of your tummy.",
+    "generic_prompt": "Transcribe the following audio verbatim. Output only the spoken words as plain text, with no commentary, no speaker labels, and no additional formatting.",
+    "generic_output": "foods of your problems. It seems that you may have something uh called gastroenteritis. Which essentially is a tummy bug or infection of your tummy. Uh",
+    "domain_prompt": "Transcribe the following audio verbatim. This is a recording of a doctor-patient medical consultation. Use correct clinical, anatomical, and pharmaceutical terminology, including exact drug names.",
+    "domain_output": "could your problems. It seems that you may have something uh called gastroenteritis. Which essentially is the tummy bug or infection of your tummy. Uh"
+  },
+  {
+    "domain": "medical",
+    "file": "medical/medical_antibiotics.wav",
+    "ground_truth": "Yeah, absolutely. So, um I think it's certainly worth, you know covering you with some antibiotics today.",
+    "generic_prompt": "Transcribe the following audio verbatim. Output only the spoken words as plain text, with no commentary, no speaker labels, and no additional formatting.",
+    "generic_output": "Absolutely. So, um I think it's certainly worth you know covering you with some antibodies today. Uh but",
+    "domain_prompt": "Transcribe the following audio verbatim. This is a recording of a doctor-patient medical consultation. Use correct clinical, anatomical, and pharmaceutical terminology, including exact drug names.",
+    "domain_output": "Absolutely. So, um I think it's certainly worth you know covering you with some antibodies today. Uh but"
+  },
+  {
+    "domain": "medical",
+    "file": "medical/medical_trimethoprim.wav",
+    "ground_truth": "Yeah, if I send it straight to your pharmacy, start the antibiotics today, something called Trimethoprim. Um, you can take two tablets, uh, one tablet twice a day for three days.",
+    "generic_prompt": "Transcribe the following audio verbatim. Output only the spoken words as plain text, with no commentary, no speaker labels, and no additional formatting.",
+    "generic_output": "Yeah, for an streitchy formula, start the end of today something called trimethoprin. Um, will take two tablets, one tablet twice a day for three days. Um",
+    "domain_prompt": "Transcribe the following audio verbatim. This is a recording of a doctor-patient medical consultation. Use correct clinical, anatomical, and pharmaceutical terminology, including exact drug names.",
+    "domain_output": "Yeah, for an erectile dysfunction, start the endoscopy today, something called trimetprine. Um, will take two tablets, one tablet twice a day for three days. Um"
+  },
+  {
+    "domain": "financial",
+    "file": "financial/financial_600million.wav",
+    "ground_truth": "I mean, can we -- can we just sort of -- I mean, this is $600 million, and this is a rounding error in the federal budget, honestly. Six hundred million dollars and says up to $600 million, I mean, you say, oh, it's -- it's impossible to need it. I mean, at the CFPB, it's a pretty new agency, and, presumably, its regulatory programs are going to develop over time.",
+    "generic_prompt": "Transcribe the following audio verbatim. Output only the spoken words as plain text, with no commentary, no speaker labels, and no additional formatting.",
+    "generic_output": "we can just sort of I mean this is $600 million and this is a rounding error in the federal budget honestly $600 million and says up to $600 million i mean you're say oh it's it's impossible to meet it i mean if the cfbb it's a pretty new agency and presumably its regulatory programs are going to develop over time congress",
+    "domain_prompt": "Transcribe the following audio verbatim. This is a recording discussing financial regulation and government appropriations. Use correct financial, legal, and monetary terminology, and transcribe dollar figures exactly.",
+    "domain_output": "we can just sort of I mean this is $600 million and this is a rounding error in the federal budget honestly $600 million and says up to $600 million I mean you say oh it's it's impossible to meet it I mean if the CFPB it's a pretty new agency and presumably its regulatory programs are going to develop over time Congress"
+  },
+  {
+    "domain": "financial",
+    "file": "financial/financial_appropriations.wav",
+    "ground_truth": "What if someone -- what if Congress set up an agency with substantial power but provided no method for that agency to obtain money other than private donations? Would that be consistent with the Appropriations Clause?",
+    "generic_prompt": "Transcribe the following audio verbatim. Output only the spoken words as plain text, with no commentary, no speaker labels, and no additional formatting.",
+    "generic_output": "What if uh someone what if Congress set up an agency with substantial power but provided no method for that agency to obtain money other than private donations would that be consistent with the appropriations clause i think that",
+    "domain_prompt": "Transcribe the following audio verbatim. This is a recording discussing financial regulation and government appropriations. Use correct financial, legal, and monetary terminology, and transcribe dollar figures exactly.",
+    "domain_output": "What if uh someone what if Congress set up an agency with substantial power but provided no method for that agency to obtain money other than private donations would that be consistent with the appropriations clause I think that"
+  }
+]

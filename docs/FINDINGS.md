@@ -16,6 +16,9 @@ Gemma 4 checkpoints in `~/projects/gemma`. Environment: macOS, Apple Silicon,
   standalone `.gguf` files in `~/projects/gemma` do **not** — see below.
 - **E4B is meaningfully more accurate than E2B** on the (small) test set
   used here, at roughly 2x the latency and ~1.5x the peak memory.
+- **Domain-specific prompting is a real but narrow lever, not a general
+  accuracy boost** — see [`DOMAIN_SHOWCASE.md`](DOMAIN_SHOWCASE.md) for a
+  dedicated empirical test against legal, medical, and financial audio.
 
 ## Test methodology
 

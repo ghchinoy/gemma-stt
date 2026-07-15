@@ -1,0 +1,88 @@
+{
+  "legal": {
+    "source": "Oyez.org (api.oyez.org) -- Supreme Court of the United States oral argument audio + official transcript",
+    "case": "Lindke v. Freed, No. 22-611 (argued October 31, 2023)",
+    "license": "SCOTUS oral argument recordings are public-domain federal government works; Oyez publishes audio + transcript openly via an unauthenticated public API",
+    "clips": [
+      {
+        "file": "legal/legal_adickes.wav",
+        "start": 3181.5,
+        "end": 3210.0,
+        "speaker": "Masha G. Hansford (Assistant to the Solicitor General)",
+        "ground_truth": "I agree with that but in the narrow sense, the Adickes sense of custom that has the force of law, that's how this Court has defined it in the 1983 context. So, when there is such a strong norm in a town that if you allow your diner to serve racially diverse groups like the facts in Adickes on segregated groups, the sheriff will come and will -- will beat you up and there will be negative repercussions that -- I think that is the form of custom. I don't want to be too rigid --",
+        "notes": "Contains 'Adickes' (Adickes v. S.H. Kress & Co., a real 1970 SCOTUS case name) twice -- an unusual proper noun that generic ASR has no statistical reason to get right without legal-domain context. Also references '1983' meaning 42 U.S.C. Section 1983, not the year."
+      },
+      {
+        "file": "legal/legal_taylorswift.wav",
+        "start": 4245.5,
+        "end": 4266.0,
+        "speaker": "Justice Ketanji Brown Jackson",
+        "ground_truth": "-- but -- but Taylor Swift could have hired -- it's -- it's not just the fact that -- I mean, they're not doing anything more than a private security guard could have done, right? So it's not -- it's not just we look at, well, what are they doing versus what a private person could do. So what makes it that they are state action and not --",
+        "notes": "'state action' is a legal term of art (state-action doctrine); easy to mishear as two ordinary words without domain framing."
+      },
+      {
+        "file": "legal/legal_intro.wav",
+        "start": 0,
+        "end": 8.0,
+        "speaker": "Chief Justice John G. Roberts, Jr.",
+        "ground_truth": "We'll hear argument next in Case 22-611, Lindke versus Freed. Mr. Kedem.",
+        "notes": "Docket-number and case-name announcement -- a good baseline/easy clip."
+      }
+    ]
+  },
+  "medical": {
+    "source": "PriMock57 (github.com/babylonhealth/primock57) -- mock primary-care consultations, professional TextGrid transcripts",
+    "case": "Day 1, Consultations 01 and 05 (doctor audio channel)",
+    "license": "CC BY 4.0 (explicit LICENSE.md in the repo)",
+    "clips": [
+      {
+        "file": "medical/medical_gastroenteritis.wav",
+        "start": 347.5,
+        "end": 359.5,
+        "speaker": "Doctor (consultation 01)",
+        "ground_truth": "Um, it seems like you may have something, uh, called gastroenteritis, which essentially just a tummy bug or infection of your uh of your tummy.",
+        "notes": "'gastroenteritis' -- multi-syllable clinical diagnosis term, immediately followed by the doctor's own plain-language paraphrase in the same clip (useful sanity check either way)."
+      },
+      {
+        "file": "medical/medical_antibiotics.wav",
+        "start": 495.5,
+        "end": 504.0,
+        "speaker": "Doctor (consultation 05)",
+        "ground_truth": "Yeah, absolutely. So, um I think it's certainly worth, you know covering you with some antibiotics today.",
+        "notes": "Baseline/easier clip, common clinical phrase."
+      },
+      {
+        "file": "medical/medical_trimethoprim.wav",
+        "start": 557.5,
+        "end": 569.5,
+        "speaker": "Doctor (consultation 05)",
+        "ground_truth": "Yeah, if I send it straight to your pharmacy, start the antibiotics today, something called Trimethoprim. Um, you can take two tablets, uh, one tablet twice a day for three days.",
+        "notes": "'Trimethoprim' is a real antibiotic name with no everyday-English analog -- a strong test of whether domain framing (\"this is a medical consultation, transcribe drug names accurately\") changes the output vs. a generic prompt."
+      }
+    ]
+  },
+  "financial": {
+    "source": "Oyez.org (api.oyez.org) -- Supreme Court oral argument audio + official transcript",
+    "case": "Consumer Financial Protection Bureau v. Community Financial Services Association of America, No. 22-448 (argued October 3, 2023)",
+    "license": "Same as legal/ -- public-domain SCOTUS recordings, published openly by Oyez",
+    "caveat": "This is a Supreme Court oral argument about federal financial regulatory law (the CFPB's funding mechanism), not a corporate earnings call. See docs/DOMAIN_SHOWCASE.md for why a cleanly-licensed, directly-downloadable earnings-call audio+transcript pair could not be sourced (SPGISpeech is real earnings-call audio but is gated/non-redistributable; Federal Reserve FOMC press conference audio requires Brightcove/archive.org extraction that failed during research). This case still exercises genuine financial vocabulary and figures (dollar amounts, 'Appropriations Clause', 'federal budget', 'Federal Reserve').",
+    "clips": [
+      {
+        "file": "financial/financial_600million.wav",
+        "start": 2912.0,
+        "end": 2937.0,
+        "speaker": "Justice Elena Kagan",
+        "ground_truth": "I mean, can we -- can we just sort of -- I mean, this is $600 million, and this is a rounding error in the federal budget, honestly. Six hundred million dollars and says up to $600 million, I mean, you say, oh, it's -- it's impossible to need it. I mean, at the CFPB, it's a pretty new agency, and, presumably, its regulatory programs are going to develop over time.",
+        "notes": "Repeated, specific dollar figures ($600 million, stated three different ways) -- a direct test of numeric transcription accuracy, which matters a lot for real financial-domain use."
+      },
+      {
+        "file": "financial/financial_appropriations.wav",
+        "start": 1657.5,
+        "end": 1682.0,
+        "speaker": "Justice Samuel A. Alito, Jr.",
+        "ground_truth": "What if someone -- what if Congress set up an agency with substantial power but provided no method for that agency to obtain money other than private donations? Would that be consistent with the Appropriations Clause?",
+        "notes": "'Appropriations Clause' is a specific constitutional/financial-regulatory term of art."
+      }
+    ]
+  }
+}

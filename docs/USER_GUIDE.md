@@ -14,6 +14,7 @@ For a quick pitch and 60-second quickstart, see the top-level
 - [Configuration (environment variables)](#configuration-environment-variables)
 - [Output formats](#output-formats)
 - [Choosing E2B vs E4B](#choosing-e2b-vs-e4b)
+- [Domain-specific prompting](#domain-specific-prompting)
 - [Exit codes](#exit-codes)
 - [Troubleshooting](#troubleshooting)
 
@@ -170,6 +171,30 @@ Based on the (small) test set in [`FINDINGS.md`](FINDINGS.md):
 If accuracy matters more than latency (e.g. offline batch transcription),
 default to `--model e4b`. For quick interactive checks, `e2b` (the CLI
 default) is usually fine.
+
+## Domain-specific prompting
+
+`--prompt` accepts any instruction, which means you can add domain context
+instead of using the plain verbatim-transcription default:
+
+```bash
+gemma-stt transcribe consult.wav --model e4b \
+  --prompt "Transcribe the following audio verbatim. This is a recording of \
+a doctor-patient medical consultation. Use correct clinical, anatomical, \
+and pharmaceutical terminology, including exact drug names."
+```
+
+This was tested empirically against real medical, legal, and financial
+audio (`tests/fixtures/domains/`) rather than assumed to work -- see
+**[docs/DOMAIN_SHOWCASE.md](DOMAIN_SHOWCASE.md)** for the full results.
+Short version: it's a real but narrow effect. It reliably fixes
+jargon-homophone errors (e.g. "antibodies" -> "antibiotics") and formatting
+conventions (adding `$` to dollar amounts), but does not reliably fix rare
+proper nouns, and on E2B specifically it once introduced a hallucinated
+detail that wasn't in the audio at all. Treat a domain prompt as a targeted
+fix for an error you've actually observed, test it against your own audio,
+and don't assume it's strictly better than the default -- especially on
+E2B.
 
 ## Exit codes
 
