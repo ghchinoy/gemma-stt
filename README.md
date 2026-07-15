@@ -17,9 +17,14 @@ This project is a companion to two sibling directories:
 
 `gemma-stt` extracts that proof of concept into a dedicated, reusable CLI.
 
+Only the **E2B** and **E4B** checkpoints work with this tool -- see
+[Model support](#model-support) below before pointing `--model` at anything
+else in `~/projects/gemma`.
+
 ## Contents
 
 - [Status](#status)
+- [Model support](#model-support)
 - [Requirements](#requirements)
 - [Install](#install)
 - [Usage](#usage)
@@ -35,12 +40,34 @@ checkpoints. See [`docs/FINDINGS.md`](docs/FINDINGS.md) for accuracy/latency
 notes, known issues, and format gotchas (short version: GGUF files do **not**
 work for audio -- you need the MLX or HF safetensors checkpoints).
 
+## Model support
+
+Google's own Gemma 4 model cards document audio support on **three**
+checkpoints -- E2B, E4B, and 12B "Unified" (see
+[`docs/MODEL_SUPPORT.md`](docs/MODEL_SUPPORT.md) for exact citations and
+line numbers). This CLI only works with **E2B and E4B**:
+
+| Checkpoint | Officially audio-capable? | Works with `gemma-stt`? |
+|---|---|---|
+| E2B | Yes (dedicated audio encoder) | **Yes** |
+| E4B | Yes (dedicated audio encoder) | **Yes** |
+| 12B "Unified" | Yes (different, encoder-free architecture) | **No** -- `mlx_vlm` has no implementation of this architecture |
+| 26B A4B / 31B Dense | No (Text + Image only, per Google's own cards) | N/A |
+
+The 12B gap is a tooling limitation, not a broken checkpoint -- its
+"encoder-free" design is real and officially benchmarked, `mlx_vlm` (this
+tool's inference backend) just doesn't implement it. Full technical
+writeup, including direct tensor-level confirmation, in
+[`docs/MODEL_SUPPORT.md`](docs/MODEL_SUPPORT.md). The 12B checkpoint is
+still perfectly usable for text/coding/reasoning (and for the `gemmma`
+fine-tuning pipeline) -- just not for audio, through this CLI.
+
 ## Requirements
 
 - macOS + Apple Silicon (mlx-vlm is Metal-based)
 - Python >= 3.10
-- Local Gemma 4 MLX checkpoints with audio support. By default this tool
-  looks for `~/projects/gemma/mlx-gemma-4-e2b` and `~/projects/gemma/mlx-gemma-4-e4b`
+- Local Gemma 4 **E2B or E4B** MLX checkpoints. By default this tool looks
+  for `~/projects/gemma/mlx-gemma-4-e2b` and `~/projects/gemma/mlx-gemma-4-e4b`
   -- see the [User Guide](docs/USER_GUIDE.md#configuration-environment-variables)
   if yours live elsewhere.
 
@@ -108,6 +135,9 @@ around the ones that come up in practice. Headlines:
   unverified).
 - GGUF checkpoints in `~/projects/gemma` are text-decoder only; audio
   requires MLX or HF safetensors format.
+- 12B "Unified" is officially audio-capable but unusable here -- `mlx_vlm`
+  has no implementation of its encoder-free architecture. See
+  [Model support](#model-support).
 - Long audio files may need chunking -- not yet implemented/tested here.
 
 ## Contributing

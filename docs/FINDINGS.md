@@ -78,7 +78,7 @@ accuracy improvement.
 | `mlx-gemma-4-e2b/` , `mlx-gemma-4-e4b/` | Yes | Primary target format, fastest to load |
 | `google-gemma-4-e2b/` , `google-gemma-4-e4b/` (HF bf16 safetensors) | Yes | mlx_vlm loads HF-format directories directly too; comparable results in spot checks. Emits a `UserWarning` about mel filter bank zero values (`num_mel_filters`=128 vs `num_frequency_bins`=257) — cosmetic, didn't affect transcription quality in testing, but worth monitoring for numerical edge cases with different audio |
 | `gemma-4-E2B-it-Q4_K_M.gguf`, `gemma-4-E*-it-qat-q4_0.gguf` | **No** | `mlx_vlm.load()` expects a directory containing `config.json`; a single `.gguf` file path fails immediately with `NotADirectoryError`. Confirmed via direct testing. These GGUF files are also confirmed (from earlier exploration) to contain **text-decoder tensors only** — no `audio_tower`/`vision_tower` weights — so even llama.cpp-based inference would need a separately-extracted `mmproj` file that has not been generated yet in `~/projects/gemma`. |
-| `google-gemma-4-12B-it-qat-q4_0-unquantized/` | Untested | Config was hand-patched (`gemma4_unified` → `gemma4`) per earlier exploration and only has 1 audio-related tensor (missing a full audio tower) — likely **not** usable for audio; not tested here to avoid wasting time on a 45GB checkpoint that's already flagged as suspect. |
+| `google-gemma-4-12B-it-qat-q4_0-unquantized/` | **No (architecture unsupported by mlx_vlm)** | Officially audio-capable per Google's own model card, but via a fundamentally different, encoder-free "Unified" architecture (`gemma4_unified`) that `mlx_vlm` doesn't implement at all — not a broken/incomplete checkpoint. See [`MODEL_SUPPORT.md`](MODEL_SUPPORT.md) for the full analysis, including confirmation that the checkpoint's single audio/vision "embedding_projection" tensors exactly match the documented design. |
 
 ## mlx-vlm version incompatibility (important)
 
@@ -112,8 +112,11 @@ against these checkpoints first, or plan to reconvert the checkpoints.
 - **Non-English / accented speech, background noise, overlapping speakers**:
   not tested — the MInDS-14 sample used is clean, single-speaker, call-center
   audio.
-- **12B "Unified" variant**: flagged as likely audio-incomplete based on
-  config/tensor inspection; not benchmarked.
+- **12B "Unified" variant**: confirmed officially audio-capable by Google
+  (with real published CoVoST/FLEURS scores that beat E4B), but unusable in
+  this CLI because `mlx_vlm` has no implementation of its encoder-free
+  `gemma4_unified` architecture — see [`MODEL_SUPPORT.md`](MODEL_SUPPORT.md)
+  for the full writeup. Not benchmarked here since it can't currently load.
 - **Quantized MLX checkpoints**: only tested against full bf16-derived MLX
   checkpoints. A 4-bit MLX quantization of the audio tower specifically was
   not tested and might behave differently (faster/smaller, possibly less
