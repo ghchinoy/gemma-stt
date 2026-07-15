@@ -111,10 +111,10 @@ future need arises.
   these are the only Gemma 4 checkpoints this CLI can actually run, and
   they're the ones validated in [`FINDINGS.md`](FINDINGS.md).
 - **Use the 12B checkpoint for text, coding, and reasoning** (via the
-  `gemmma` fine-tuning pipeline or a plain-text MLX/transformers workflow)
-  -- its text decoder is intact and unaffected by any of the above; only
-  its multimodal (audio/vision) path is unusable in this project's
-  toolchain today.
+  [gemma4-tuning](https://github.com/ghchinoy/gemma4-tuning) fine-tuning
+  pipeline or a plain-text MLX/transformers workflow) -- its text decoder
+  is intact and unaffected by any of the above; only its multimodal
+  (audio/vision) path is unusable in this project's toolchain today.
 - **Don't point `gemma-stt --model` at the 12B directory.** It will fail
   to load with a missing/shape-mismatched audio tower error (the same
   class of error documented in [`FINDINGS.md`](FINDINGS.md)'s mlx-vlm

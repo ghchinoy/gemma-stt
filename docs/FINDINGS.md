@@ -24,7 +24,10 @@ Gemma 4 checkpoints in `~/projects/gemma`. Environment: macOS, Apple Silicon,
 
 No local `.wav` fixtures existed in `gemmma/data_audio` (only a `train.jsonl`
 referencing filenames from the original PolyAI/MInDS-14 dataset, without the
-audio itself). Since that dataset was already cached locally
+audio itself) -- `gemmma` here is
+[gemma4-tuning](https://github.com/ghchinoy/gemma4-tuning), the sibling
+fine-tuning project this CLI's original proof-of-concept came from. Since
+that dataset was already cached locally
 (`~/.cache/huggingface/datasets/PolyAI___minds14`, used by `gemmma`'s
 `mlxtune prep` for audio fine-tuning), 5 real labeled banking-call-center
 clips were extracted from it as ground-truth test fixtures

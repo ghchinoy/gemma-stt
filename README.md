@@ -62,8 +62,9 @@ The 12B gap is a tooling limitation, not a broken checkpoint -- its
 tool's inference backend) just doesn't implement it. Full technical
 writeup, including direct tensor-level confirmation, in
 [`docs/MODEL_SUPPORT.md`](docs/MODEL_SUPPORT.md). The 12B checkpoint is
-still perfectly usable for text/coding/reasoning (and for the `gemmma`
-fine-tuning pipeline) -- just not for audio, through this CLI.
+still perfectly usable for text/coding/reasoning (and for the
+[gemma4-tuning](https://github.com/ghchinoy/gemma4-tuning) fine-tuning
+pipeline) -- just not for audio, through this CLI.
 
 ## Requirements
 
@@ -200,7 +201,9 @@ npx skills use ghchinoy/gemma-stt --skill gemma-stt-transcription --agent openco
 ## Contributing
 
 This is a personal/internal tool, built for experimenting with Gemma 4's
-local audio capabilities alongside `~/projects/gemma` and `~/projects/gemmma`.
+local audio capabilities alongside a local Gemma 4 model zoo and
+[gemma4-tuning](https://github.com/ghchinoy/gemma4-tuning), an MLX-based
+LoRA fine-tuning pipeline for Gemma 4.
 It's not currently soliciting outside contributions, but issues/PRs with
 concrete fixes (especially around the open questions in
 [`docs/FINDINGS.md`](docs/FINDINGS.md#things-not-tested--open-questions))
