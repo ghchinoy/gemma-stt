@@ -13,7 +13,8 @@ This project is a companion to two sibling directories:
   and MLX checkpoints for E2B/E4B/12B).
 - `~/projects/gemmma` -- an MLX-based LoRA fine-tuning pipeline for Gemma 4
   (the `mlxtune` CLI), which is where the original proof-of-concept audio
-  script (`scripts/ask_audio.py`) came from.
+  script (`scripts/ask_audio.py`) came from. Publicly available at
+  [ghchinoy/gemma4-tuning](https://github.com/ghchinoy/gemma4-tuning).
 
 `gemma-stt` extracts that proof of concept into a dedicated, reusable CLI.
 
@@ -31,6 +32,7 @@ else in `~/projects/gemma`.
 - [How it works](#how-it-works)
 - [Domain-specific prompting](#domain-specific-prompting)
 - [Known limitations](#known-limitations)
+- [Agent Skill](#agent-skill)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -174,6 +176,26 @@ around the ones that come up in practice. Headlines:
   has no implementation of its encoder-free architecture. See
   [Model support](#model-support).
 - Long audio files may need chunking -- not yet implemented/tested here.
+
+## Agent Skill
+
+This repo ships an [Agent Skills](https://agentskills.io)-spec skill
+(`skills/gemma-stt-transcription/`) so AI coding agents can pick up correct,
+tested instructions for using this CLI directly -- model selection gotchas,
+domain-prompting caveats, and common failure modes included. Discover or
+install it with the [Open Agent Skills CLI](https://github.com/vercel-labs/skills)
+(`npx skills`, works with OpenCode, Claude Code, Cursor, and 70+ other agents):
+
+```bash
+# List the skill(s) in this repo without installing
+npx skills add ghchinoy/gemma-stt --list
+
+# Install it into your own project/agent config
+npx skills add ghchinoy/gemma-stt --skill gemma-stt-transcription
+
+# Or use it without installing -- starts the agent interactively
+npx skills use ghchinoy/gemma-stt --skill gemma-stt-transcription --agent opencode
+```
 
 ## Contributing
 
